@@ -1,7 +1,6 @@
 package config
 
 import (
-	"os"
 	"path/filepath"
 	"strings"
 
@@ -11,14 +10,14 @@ import (
 )
 
 func Load(configDirectory string, configFileName string, envPrefix string, runtimeEnv string, config any) error {
-	if runtimeEnv == KUBERNETES {
-		mountPath := os.Getenv(MountConfigFilePath)
-		if mountPath == "" {
-			return errs.ErrArgs.WrapMsg(MountConfigFilePath + " env is empty")
-		}
+	// if runtimeEnv == KUBERNETES {
+	// 	mountPath := os.Getenv(MountConfigFilePath)
+	// 	if mountPath == "" {
+	// 		return errs.ErrArgs.WrapMsg(MountConfigFilePath + " env is empty")
+	// 	}
 
-		return loadConfig(filepath.Join(mountPath, configFileName), envPrefix, config)
-	}
+	// 	return loadConfig(filepath.Join(mountPath, configFileName), envPrefix, config)
+	// }
 
 	return loadConfig(filepath.Join(configDirectory, configFileName), envPrefix, config)
 }

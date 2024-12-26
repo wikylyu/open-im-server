@@ -43,9 +43,9 @@ func (u emptyOnlinePusher) GetOnlinePushFailedUserIDs(ctx context.Context, msg *
 
 func NewOnlinePusher(disCov discovery.SvcDiscoveryRegistry, config *Config) OnlinePusher {
 
-	if config.runTimeEnv == conf.KUBERNETES {
-		return NewDefaultAllNode(disCov, config)
-	}
+	// if config.runTimeEnv == conf.KUBERNETES {
+	// 	return NewDefaultAllNode(disCov, config)
+	// }
 	switch config.Discovery.Enable {
 	case conf.ETCD:
 		return NewDefaultAllNode(disCov, config)

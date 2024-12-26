@@ -19,9 +19,6 @@ import (
 
 	"github.com/openimsdk/open-im-server/v3/pkg/common/config"
 	"github.com/openimsdk/tools/discovery"
-	"google.golang.org/grpc"
-
-	"github.com/openimsdk/tools/discovery/kubernetes"
 
 	"github.com/openimsdk/tools/discovery/etcd"
 	"github.com/openimsdk/tools/errs"
@@ -29,13 +26,13 @@ import (
 
 // NewDiscoveryRegister creates a new service discovery and registry client based on the provided environment type.
 func NewDiscoveryRegister(discovery *config.Discovery, runtimeEnv string) (discovery.SvcDiscoveryRegistry, error) {
-	if runtimeEnv == config.KUBERNETES {
-		return kubernetes.NewKubernetesConnManager(discovery.Kubernetes.Namespace,
-			grpc.WithDefaultCallOptions(
-				grpc.MaxCallSendMsgSize(1024*1024*20),
-			),
-		)
-	}
+	// if runtimeEnv == config.KUBERNETES {
+	// 	return kubernetes.NewKubernetesConnManager(discovery.Kubernetes.Namespace,
+	// 		grpc.WithDefaultCallOptions(
+	// 			grpc.MaxCallSendMsgSize(1024*1024*20),
+	// 		),
+	// 	)
+	// }
 
 	switch discovery.Enable {
 	case config.ETCD:
